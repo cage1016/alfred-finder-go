@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.kaichu.finderGo</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>1C5D2A39-7C22-4451-96C1-FA4A5D507A12</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8BB44B38-5DC5-4766-B4AC-AB7AC09A66AF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A48DA0E9-B8C7-4DE0-87DB-5E6E3402394A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1C5D2A39-7C22-4451-96C1-FA4A5D507A12</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>KAI CHU CHUNG</string>
+	<key>description</key>
+	<string>Switch Finder tabs with ease</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Finder Go</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>function run(argv) {
+    var app = Application("Finder");
+    var windowNameToSwitchTo = argv[0];
+    var finderWindows = app.windows();
+
+    for (var i = 0; i &lt; finderWindows.length; i++) {
+        if (finderWindows[i].name() === windowNameToSwitchTo) {
+            app.activate();
+            finderWindows[i].select();
+            break;
+        }
+    }
+}</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>7</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8BB44B38-5DC5-4766-B4AC-AB7AC09A66AF</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>fg</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>z</string>
+				<key>script</key>
+				<string>function run(argv) {
+    var app = Application("Finder");
+    var windowList = app.windows();
+    
+    var results = {
+        items: []
+    }
+
+    for (var i = 0; i &lt; windowList.length; i++) {
+        results.items.push({
+            title: windowList[i].name(),
+            arg: windowList[i].name(),
+            icon: {
+                type: "fileicon",
+                path: "/System/Library/CoreServices/Finder.app"
+            }
+        });
+    }
+
+    return JSON.stringify(results);
+}</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>d</string>
+				<key>title</key>
+				<string>Finder Go</string>
+				<key>type</key>
+				<integer>7</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>1C5D2A39-7C22-4451-96C1-FA4A5D507A12</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>A48DA0E9-B8C7-4DE0-87DB-5E6E3402394A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>1C5D2A39-7C22-4451-96C1-FA4A5D507A12</key>
+		<dict>
+			<key>xpos</key>
+			<real>300</real>
+			<key>ypos</key>
+			<real>280</real>
+		</dict>
+		<key>8BB44B38-5DC5-4766-B4AC-AB7AC09A66AF</key>
+		<dict>
+			<key>xpos</key>
+			<real>470</real>
+			<key>ypos</key>
+			<real>280</real>
+		</dict>
+		<key>A48DA0E9-B8C7-4DE0-87DB-5E6E3402394A</key>
+		<dict>
+			<key>xpos</key>
+			<real>130</real>
+			<key>ypos</key>
+			<real>280</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>version</key>
+	<string>0.1.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/cage1016/alfred-finder-go</string>
+</dict>
+</plist>
